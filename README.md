@@ -101,8 +101,11 @@ If you have tensorflow installed, you can see tensorboard logs in `./checkpoints
 
 - Inputs during Training the Model :
 <p align='center'>  
-  <img src='imgs/Train1.JPG' width='400'/>
-  <img src='imgs/Train2.JPG' width='400'/>
+  <img src='imgs/Train1.JPG' width='600'/>
+</p>
+
+<p align='center'>  
+  <img src='imgs/Train2.JPG' width='600'/>
 </p>
 
 
@@ -110,10 +113,10 @@ If you have tensorflow installed, you can see tensorboard logs in `./checkpoints
 - Some Training routine Images :
 
 <p align='center'>  
-  <img src='imgs/Training1.JPG' width='400'/>
+  <img src='imgs/Training1.JPG' width='600'/>
 </p>
 <p align='center'>  
-  <img src='imgs/Training2.JPG' width='400'/>
+  <img src='imgs/Training2.JPG' width='600'/>
 </p>
 
 
