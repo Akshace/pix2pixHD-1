@@ -19,7 +19,7 @@ The PyTorch implementation of the original [code](https://https://github.com/NVI
   <img src='imgs/test2.jpg' width='400'/>
   <img src='imgs/test3.jpg' width='400'/>
 </p>
-- Interactive editing results
+<!-- - Interactive editing results
 <p align='center'>  
   <img src='imgs/teaser_style.gif' width='400'/>
   <img src='imgs/teaser_label.gif' width='400'/>
@@ -51,7 +51,7 @@ The PyTorch implementation of the original [code](https://https://github.com/NVI
   <img src='imgs/city_short.gif' width='330'/>
   <img src='imgs/face_short.gif' width='450'/>
 </p>
-
+ -->
 ## Prerequisites
 - Linux or macOS
 - Python 2 or 3
@@ -99,13 +99,19 @@ python train.py --name FFPE_fp16 --dataroot ./datasets/FFPE_fp16 --save_epoch_fr
 - To view training results, please checkout intermediate results in `./checkpoints/FFPE_fp16/web/index.html`.
 If you have tensorflow installed, you can see tensorboard logs in `./checkpoints/FFPE_fp16/logs` by adding `--tf_log` to the training scripts.
 
+- Inputs during Training the Model :
+<p align='center'>  
+  <img src='imgs/train1.jpg' width='400'/>
+  <img src='imgs/train2.jpg' width='400'/>
+</p>
+
 ### Multi-GPU training
 - Train a model using multiple GPUs :
 ```bash
 
 python train.py --name FFPE_fp16 --dataroot ./datasets/FFPE_fp16 --save_epoch_freq 10 --batchSize 4 --gpu_ids 0,1,2,3
 ```
-Note: I have tested trainig this model using 4 Tesla V100 GPUs, and it reduced training time by 40%
+Note: I have tested training this model using 4 Tesla V100 GPUs, and it reduced training time by 40%
 
 <!-- ### Training with Automatic Mixed Precision (AMP) for faster speed
 - To train with mixed precision support, please first install apex from: https://github.com/NVIDIA/apex
