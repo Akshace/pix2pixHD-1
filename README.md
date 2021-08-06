@@ -1,6 +1,4 @@
-<img src='imgs/teaser_720.gif' align="right" width=360>
 
-<br><br><br><br>
 
 # Generating Synthetic Kidney FTU Images using Pix2PixHD
 ### [Project](https://github.com/Akshace/pix2pixHD-1) <br>
@@ -52,6 +50,8 @@ The PyTorch implementation of the original [code](https://https://github.com/NVI
   <img src='imgs/face_short.gif' width='450'/>
 </p>
  -->
+ 
+ 
 ## Prerequisites
 - Linux or macOS
 - Python 2 or 3
@@ -101,9 +101,21 @@ If you have tensorflow installed, you can see tensorboard logs in `./checkpoints
 
 - Inputs during Training the Model :
 <p align='center'>  
-  <img src='imgs/train1.jpg' width='400'/>
-  <img src='imgs/train2.jpg' width='400'/>
+  <img src='imgs/Train1.jpg' width='400'/>
+  <img src='imgs/Train2.jpg' width='400'/>
 </p>
+
+
+
+- Some Training routine Images :
+
+<p align='center'>  
+  <img src='imgs/training1.jpg' width='400'/>
+</p>
+<p align='center'>  
+  <img src='imgs/training2.jpg' width='400'/>
+</p>
+
 
 ### Multi-GPU training
 - Train a model using multiple GPUs :
