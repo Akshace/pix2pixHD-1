@@ -2,19 +2,22 @@
 
 <br><br><br><br>
 
-# pix2pixHD
-### [Project](https://tcwang0509.github.io/pix2pixHD/) | [Youtube](https://youtu.be/3AIpPlzM_qs) | [Paper](https://arxiv.org/pdf/1711.11585.pdf) <br>
-Pytorch implementation of our method for high-resolution (e.g. 2048x1024) photorealistic image-to-image translation. It can be used for turning semantic label maps into photo-realistic images or synthesizing portraits from face label maps. <br><br>
-[High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs](https://tcwang0509.github.io/pix2pixHD/)  
- [Ting-Chun Wang](https://tcwang0509.github.io/)<sup>1</sup>, [Ming-Yu Liu](http://mingyuliu.net/)<sup>1</sup>, [Jun-Yan Zhu](http://people.eecs.berkeley.edu/~junyanz/)<sup>2</sup>, Andrew Tao<sup>1</sup>, [Jan Kautz](http://jankautz.com/)<sup>1</sup>, [Bryan Catanzaro](http://catanzaro.name/)<sup>1</sup>  
- <sup>1</sup>NVIDIA Corporation, <sup>2</sup>UC Berkeley  
- In CVPR 2018.  
+# Generating Synthetic Kidney FTU Images using Pix2PixHD
+### [Project](https://github.com/Akshace/pix2pixHD-1) <br>
 
-## Image-to-image translation at 2k/1k resolution
-- Our label-to-streetview results
+The PyTorch implementation of the original [code](https://https://github.com/NVIDIA/pix2pixHD) is used to generate high resolution synthetic images of Kidney glomeruli using semantic label maps and Edge images as inputs.
+<!-- Pytorch implementation of our method for high-resolution (e.g. 2048x1024) photorealistic image-to-image translation. It can be used for turning semantic label maps into photo-realistic images or synthesizing portraits from face label maps. <br><br> -->
+[High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs](https://tcwang0509.github.io/pix2pixHD/)  
+<!--  [Ting-Chun Wang](https://tcwang0509.github.io/)<sup>1</sup>, [Ming-Yu Liu](http://mingyuliu.net/)<sup>1</sup>, [Jun-Yan Zhu](http://people.eecs.berkeley.edu/~junyanz/)<sup>2</sup>, Andrew Tao<sup>1</sup>, [Jan Kautz](http://jankautz.com/)<sup>1</sup>, [Bryan Catanzaro](http://catanzaro.name/)<sup>1</sup>  
+ <sup>1</sup>NVIDIA Corporation, <sup>2</sup>UC Berkeley  
+ In CVPR 2018.   -->
+
+## Generated Synthetic Images from the Model
+- Some Generated Results
 <p align='center'>  
-  <img src='imgs/teaser_label.png' width='400'/>
-  <img src='imgs/teaser_ours.jpg' width='400'/>
+  <img src='imgs/test1.jpg' width='400'/>
+  <img src='imgs/test2.jpg' width='400'/>
+  <img src='imgs/test3.jpg' width='400'/>
 </p>
 - Interactive editing results
 <p align='center'>  
@@ -63,47 +66,48 @@ pip install dominate
 ```
 - Clone this repo:
 ```bash
-git clone https://github.com/NVIDIA/pix2pixHD
-cd pix2pixHD
+git clone https://github.com/Akshace/pix2pixHD-1
+cd pix2pixHD-1
 ```
 
 
 ### Testing
-- A few example Cityscapes test images are included in the `datasets` folder.
-- Please download the pre-trained Cityscapes model from [here](https://drive.google.com/file/d/1h9SykUnuZul7J3Nbms2QGH1wa85nbN2-/view?usp=sharing) (google drive link), and put it under `./checkpoints/label2city_1024p/`
-- Test the model (`bash ./scripts/test_1024p.sh`):
+- A few example Kidney  images are included in the `datasets` folder.
+- Please download the pre-trained generator model from [here](https://drive.google.com/file/d/1h9SykUnuZul7J3Nbms2QGH1wa85nbN2-/view?usp=sharing) (google drive link), and put it under `./checkpoints/FFPE_fp16/`
+- Test the model:
 ```bash
-#!./scripts/test_1024p.sh
-python test.py --name label2city_1024p --netG local --ngf 32 --resize_or_crop none
+python test.py --dataroot ./datasets/FFPE_fp16 --name FFPE_fp16 --netG global --resize_or_crop none --checkpoints_dir ./trained
 ```
-The test results will be saved to a html file here: `./results/label2city_1024p/test_latest/index.html`.
+The test results will be saved to a html file here: `./results/FFPE_fp16/test_latest/index.html`.
 
 More example scripts can be found in the `scripts` directory.
 
 
 ### Dataset
-- We use the Cityscapes dataset. To train a model on the full dataset, please download it from the [official website](https://www.cityscapes-dataset.com/) (registration required).
-After downloading, please put it under the `datasets` folder in the same way the example images are provided.
+- I used the Kidney Glomeruli dataset. 
+- Link to the Dataset: https://www.kaggle.com/iafoss/hubmap-1024x1024
+<!-- - 
+- To train a model on the full dataset, please download it from the [official website](https://www.cityscapes-dataset.com/) (registration required).
+After downloading, please put it under the `datasets` folder in the same way the example images are provided. -->
 
 
 ### Training
-- Train a model at 1024 x 512 resolution (`bash ./scripts/train_512p.sh`):
+- Train a model at 1024 x 1024 resolution :
 ```bash
-#!./scripts/train_512p.sh
-python train.py --name label2city_512p
+python train.py --name FFPE_fp16 --dataroot ./datasets/FFPE_fp16 --save_epoch_freq 10
 ```
-- To view training results, please checkout intermediate results in `./checkpoints/label2city_512p/web/index.html`.
-If you have tensorflow installed, you can see tensorboard logs in `./checkpoints/label2city_512p/logs` by adding `--tf_log` to the training scripts.
+- To view training results, please checkout intermediate results in `./checkpoints/FFPE_fp16/web/index.html`.
+If you have tensorflow installed, you can see tensorboard logs in `./checkpoints/FFPE_fp16/logs` by adding `--tf_log` to the training scripts.
 
 ### Multi-GPU training
-- Train a model using multiple GPUs (`bash ./scripts/train_512p_multigpu.sh`):
+- Train a model using multiple GPUs :
 ```bash
-#!./scripts/train_512p_multigpu.sh
-python train.py --name label2city_512p --batchSize 8 --gpu_ids 0,1,2,3,4,5,6,7
-```
-Note: this is not tested and we trained our model using single GPU only. Please use at your own discretion.
 
-### Training with Automatic Mixed Precision (AMP) for faster speed
+python train.py --name FFPE_fp16 --dataroot ./datasets/FFPE_fp16 --save_epoch_freq 10 --batchSize 4 --gpu_ids 0,1,2,3
+```
+Note: I have tested trainig this model using 4 Tesla V100 GPUs, and it reduced training time by 40%
+
+<!-- ### Training with Automatic Mixed Precision (AMP) for faster speed
 - To train with mixed precision support, please first install apex from: https://github.com/NVIDIA/apex
 - You can then train the model by adding `--fp16`. For example,
 ```bash
@@ -114,7 +118,7 @@ In our test case, it trains about 80% faster with AMP on a Volta machine.
 
 ### Training at full resolution
 - To train the images at full resolution (2048 x 1024) requires a GPU with 24G memory (`bash ./scripts/train_1024p_24G.sh`), or 16G memory if using mixed precision (AMP).
-- If only GPUs with 12G memory are available, please use the 12G script (`bash ./scripts/train_1024p_12G.sh`), which will crop the images during training. Performance is not guaranteed using this script.
+- If only GPUs with 12G memory are available, please use the 12G script (`bash ./scripts/train_1024p_12G.sh`), which will crop the images during training. Performance is not guaranteed using this script. -->
 
 ### Training with your own dataset
 - If you want to train with your own dataset, please generate label maps which are one-channel whose pixel values correspond to the object labels (i.e. 0,1,...,N-1, where N is the number of labels). This is because we need to generate one-hot vectors from the label maps. Please also specity `--label_nc N` during both training and testing.
@@ -129,7 +133,6 @@ In our test case, it trains about 80% faster with AMP on a Volta machine.
 
 ## Citation
 
-If you find this useful for your research, please use the following.
 
 ```
 @inproceedings{wang2018pix2pixHD,
