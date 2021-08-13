@@ -73,7 +73,7 @@ cd pix2pixHD-1
 
 ### Testing
 - A few example Kidney  images are included in the `datasets` folder.
-- Please download the pre-trained generator model from [here](https://drive.google.com/file/d/1h9SykUnuZul7J3Nbms2QGH1wa85nbN2-/view?usp=sharing) (google drive link), and put it under `./checkpoints/FFPE_fp16/`
+- Please download the pre-trained generator model from [here](https://drive.google.com/file/d/1kXvp4HCJMPKtrdu0ReLrY6QcjZ_6XATQ/view?usp=sharing) (google drive link), and put it under `./checkpoints/FFPE_fp16/`
 - Test the model:
 ```bash
 python test.py --dataroot ./datasets/FFPE_fp16 --name FFPE_fp16 --netG global --resize_or_crop none --checkpoints_dir ./trained
@@ -87,7 +87,7 @@ More example scripts can be found in the `scripts` directory.
 - I used the Kidney Glomeruli dataset. 
 - Link to the Dataset: https://www.kaggle.com/iafoss/hubmap-1024x1024
 <!-- - 
-- To train a model on the full dataset, please download it from the [official website](https://www.cityscapes-dataset.com/) (registration required).
+- To train a model on the full dataset, please download it from the [official website](https://drive.google.com/drive/folders/1ulrfftYLtkrlMd8pWxj5lPX4g71X1TuR?usp=sharing).
 After downloading, please put it under the `datasets` folder in the same way the example images are provided. -->
 
 
